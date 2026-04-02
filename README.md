@@ -23,6 +23,7 @@ A Claude Code skill for designing group sequential clinical trials for survival 
 
 ### R packages
 - `gsDesign` -- group sequential boundaries and sample size
+- `gsDesign2` -- non-proportional hazards evaluation (AHR, analytical power)
 - `lrstat` -- log-rank simulation for verification
 - `graphicalMCP` -- multiplicity diagrams
 - `jsonlite` -- JSON output
