@@ -7,6 +7,7 @@ A collection of [Claude Code](https://claude.ai/code) skills for biostatistics w
 | Skill | Description | Status |
 |-------|-------------|--------|
 | [Group Sequential Design](./group-sequential-design/) | Design group sequential clinical trials for survival endpoints with interim analyses, spending functions, multiplicity, and simulation verification | Available |
+| [KM Digitizer](./km-digitizer/) | Digitize Kaplan-Meier survival curves from PNG images, reconstruct individual patient-level IPD, and generate Word reports with KM comparison plots, survival statistics, and hazard rate curves | Available |
 
 ## What Are Claude Code Skills?
 
@@ -55,6 +56,11 @@ Biostatistics-skills/
 │   ├── evals/                     # Evaluation scenarios
 │   ├── README.md                  # Skill-specific documentation
 │   └── LICENSE
+├── km-digitizer/                  # KM plot digitization and IPD reconstruction skill
+│   ├── SKILL.md                   # Skill instructions and workflow
+│   ├── README.md                  # Skill-specific documentation
+│   ├── scripts/                   # digitize_km.py, reconstruct_ipd.R, generate_report.py, and more
+│   └── evals/                     # Evaluation scenarios
 └── <future-skill>/                # Additional skills to come
 ```
 
