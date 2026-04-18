@@ -48,19 +48,7 @@ Each skill in this repo is self-contained: it includes its own instructions, ref
 Biostatistics-skills/
 ├── README.md
 ├── group-sequential-design/       # Group sequential trial design skill
-│   ├── SKILL.md                   # Skill instructions and workflow
-│   ├── reference.md               # Design guidance and rules
-│   ├── examples.md                # Code examples by pattern
-│   ├── post_design.md             # Verification procedure
-│   ├── scripts/                   # Helper scripts and templates
-│   ├── evals/                     # Evaluation scenarios
-│   ├── README.md                  # Skill-specific documentation
-│   └── LICENSE
 ├── km-digitizer/                  # KM plot digitization and IPD reconstruction skill
-│   ├── SKILL.md                   # Skill instructions and workflow
-│   ├── README.md                  # Skill-specific documentation
-│   ├── scripts/                   # digitize_km.py, reconstruct_ipd.R, generate_report.py, and more
-│   └── evals/                     # Evaluation scenarios
 └── <future-skill>/                # Additional skills to come
 ```
 
