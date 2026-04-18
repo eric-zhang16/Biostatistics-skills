@@ -22,7 +22,22 @@ Each skill in this repo is self-contained: it includes its own instructions, ref
 - [Claude Code](https://claude.ai/code) (CLI, desktop app, or IDE extension)
 - Skill-specific dependencies (see each skill's README)
 
-### Installation
+### Installation via Plugin Marketplace (recommended)
+
+Add this repo as a Claude Code marketplace (one-time setup):
+
+```bash
+/plugin marketplace add https://github.com/eric-zhang16/Biostatistics-skills.git
+```
+
+Then install individual skills:
+
+```bash
+/plugin install km-digitizer@Biostatistics-skills
+/plugin install group-sequential-design@Biostatistics-skills
+```
+
+### Manual Installation
 
 1. Clone this repo:
    ```bash
@@ -34,10 +49,7 @@ Each skill in this repo is self-contained: it includes its own instructions, ref
    your-project/
    └── .claude/
        └── skills/
-           └── group-sequential-design/
-               ├── SKILL.md
-               ├── reference.md
-               └── ...
+           └── km-digitizer/
    ```
 
 3. Follow the skill-specific setup instructions in its README.
