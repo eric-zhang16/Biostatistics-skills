@@ -6,8 +6,8 @@ A collection of [Claude Code](https://claude.ai/code) skills for biostatistics w
 
 | Skill | Description | Status |
 |-------|-------------|--------|
-| [Group Sequential Design](./group-sequential-design/) | Design group sequential clinical trials for survival endpoints with interim analyses, spending functions, multiplicity, and simulation verification | Available |
-| [KM Digitizer](./km-digitizer/) | Digitize Kaplan-Meier survival curves from PNG images, reconstruct individual patient-level IPD, and generate Word reports with KM comparison plots, survival statistics, and hazard rate curves | Available |
+| [Group Sequential Design](./plugins/group-sequential-design/) | Design group sequential clinical trials for survival endpoints with interim analyses, spending functions, multiplicity, and simulation verification | Available |
+| [KM Digitizer](./plugins/km-digitizer/) | Digitize Kaplan-Meier survival curves from PNG images, reconstruct individual patient-level IPD, and generate Word reports with KM comparison plots, survival statistics, and hazard rate curves | Available |
 
 ## Getting Started
 
@@ -50,13 +50,14 @@ Then install individual skills:
 
 ## Repo Structure
 
-This repo is a Claude Code plugin marketplace. Each top-level folder is a **plugin** containing one skill.
+This repo is a Claude Code plugin marketplace. Each folder under `plugins/` is a **plugin** containing one skill.
 
 ```
 Biostatistics-skills/
-├── .claude-plugin/          # Marketplace metadata
-├── group-sequential-design/ # Plugin: group sequential trial design
-├── km-digitizer/            # Plugin: KM plot digitization and IPD reconstruction
+├── .claude-plugin/                  # Marketplace metadata
+├── plugins/
+│   ├── group-sequential-design/     # Plugin: group sequential trial design
+│   └── km-digitizer/                # Plugin: KM plot digitization and IPD reconstruction
 └── README.md
 ```
 

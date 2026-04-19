@@ -11,15 +11,15 @@
       "name": "km-digitizer",
       "description": "Digitize Kaplan-Meier survival curves from PNG images, reconstruct individual patient-level IPD, and generate Word reports with KM comparison plots, survival statistics, and hazard rate curves.",
       "category": "life-sciences",
-      "source": "./km-digitizer",
-      "homepage": "https://github.com/eric-zhang16/Biostatistics-skills/tree/main/km-digitizer"
+      "source": "./plugins/km-digitizer",
+      "homepage": "https://github.com/eric-zhang16/Biostatistics-skills/tree/main/plugins/km-digitizer"
     },
     {
       "name": "group-sequential-design",
       "description": "Design group sequential clinical trials for survival endpoints (OS, PFS, DFS) with interim analyses, spending functions, boundaries, multiplicity control, and simulation verification.",
       "category": "life-sciences",
-      "source": "./group-sequential-design",
-      "homepage": "https://github.com/eric-zhang16/Biostatistics-skills/tree/main/group-sequential-design"
+      "source": "./plugins/group-sequential-design",
+      "homepage": "https://github.com/eric-zhang16/Biostatistics-skills/tree/main/plugins/group-sequential-design"
     }
   ]
 }
