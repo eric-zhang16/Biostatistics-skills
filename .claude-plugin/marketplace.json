@@ -11,12 +11,11 @@
   "plugins": [
     {
       "name": "km-digitizer",
-      "source": "./",
+      "source": "./km-digitizer",
       "description": "Digitize Kaplan-Meier survival curves from PNG images, reconstruct individual patient-level IPD, and generate Word reports with KM comparison plots, survival statistics, and hazard rate curves.",
       "category": "life-sciences",
       "tags": ["clinical-trials", "survival-analysis", "biostatistics", "kaplan-meier", "ipd"],
-      "strict": false,
-      "skills": ["./km-digitizer"]
+      "strict": false
     },
     {
       "name": "group-sequential-design",
