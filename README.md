@@ -20,39 +20,46 @@ A collection of [Claude Code](https://claude.ai/code) skills for biostatistics w
 
 Add this repo as a Claude Code marketplace (one-time setup):
 
-\\ash
+```bash
 /plugin marketplace add https://github.com/eric-zhang16/Biostatistics-skills.git
-\
+```
+
 Then install individual skills:
 
-\\ash
+```bash
 /plugin install km-digitizer@Biostatistics-skills
 /plugin install group-sequential-design@Biostatistics-skills
-\
+```
+
 ### Manual Installation
 
 1. Clone this repo:
-   \\ash
+   ```bash
    git clone https://github.com/eric-zhang16/Biostatistics-skills.git
-   \
-2. Copy the skill folder(s) you need into your project's \.claude/skills/\ directory:
-   \   your-project/
+   ```
+
+2. Copy the skill folder(s) you need into your project's `.claude/skills/` directory:
+   ```
+   your-project/
    └── .claude/
        └── skills/
            └── km-digitizer/
-   \
+   ```
+
 3. Follow the skill-specific setup instructions in its README.
 
 ## Repo Structure
 
 This repo is a Claude Code plugin marketplace. Each top-level folder is a **plugin** containing one skill.
 
-\Biostatistics-skills/
+```
+Biostatistics-skills/
 ├── .claude-plugin/          # Marketplace metadata
 ├── group-sequential-design/ # Plugin: group sequential trial design
 ├── km-digitizer/            # Plugin: KM plot digitization and IPD reconstruction
 └── README.md
-\
+```
+
 ## License
 
 Each skill may have its own license. See the individual skill folders for details.
