@@ -75,9 +75,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           MODEL="${{ github.event.inputs.model || 'claude-sonnet-4-6' }}"
-          claude --skill _automation/benchmark-runner/SKILL.md \
-                 --message "Run benchmarks using model $MODEL" \
-                 --no-interactive
+          SKILL=$(cat _automation/benchmark-runner/SKILL.md)
+          claude -p "$SKILL
+
+Run benchmarks using model $MODEL. Follow the steps in the skill above exactly." \
+                 --model "$MODEL"
 
       - name: Update run manifest and dashboard
         if: steps.check.outputs.status == 'pending'
