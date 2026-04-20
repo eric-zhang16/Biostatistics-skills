@@ -1,8 +1,6 @@
 name: Scheduled Benchmarks
 
 on:
-  schedule:
-    - cron: '0 6 * * 1'  # Every Monday at 06:00 UTC
   push:
     branches: [main]
     paths:
