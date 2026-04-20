@@ -1,3 +1,4 @@
+# Scheduled Benchmarks workflow
 name: Scheduled Benchmarks
 
 on:
