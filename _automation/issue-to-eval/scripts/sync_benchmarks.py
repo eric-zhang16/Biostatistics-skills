@@ -1,0 +1,97 @@
+"""
+Fetch all GitHub issues labeled 'benchmark' and sync them into the appropriate
+plugins/{skill}/skills/{skill}/evals/evals.json files.
+
+Usage:
+    python sync_benchmarks.py
+    python sync_benchmarks.py --repo eric-zhang16/Biostatistics-skills
+"""
+
+import json
+import subprocess
+import sys
+import argparse
+from import_issue_eval import parse_issue_markdown, save_to_evals
+
+DEFAULT_REPO = "eric-zhang16/Biostatistics-skills"
+
+
+def fetch_benchmark_issues(repo: str) -> list[dict]:
+    try:
+        result = subprocess.run(
+            [
+                "gh", "issue", "list",
+                "--repo", repo,
+                "--label", "benchmark",
+                "--json", "number,body,title",
+                "--limit", "1000",
+            ],
+            capture_output=True, text=True, check=True,
+        )
+    except subprocess.CalledProcessError as e:
+        print(f"Error: gh failed listing benchmark issues: {e.stderr}", file=sys.stderr)
+        sys.exit(1)
+
+    return json.loads(result.stdout)
+
+
+def sync_all_benchmarks(repo: str) -> None:
+    issues = fetch_benchmark_issues(repo)
+
+    if not issues:
+        print("No issues found with 'benchmark' label.")
+        return
+
+    total = len(issues)
+    print(f"Found {total} benchmark issue(s). Syncing...")
+
+    synced = 0
+    skipped = 0
+    errors = 0
+
+    for issue in issues:
+        try:
+            parsed = parse_issue_markdown(issue["body"])
+
+            if not parsed.get("skill_name") or not parsed.get("prompt"):
+                print(
+                    f"Skipping Issue #{issue['number']}: Missing Skill Name or Query.",
+                    file=sys.stderr,
+                )
+                skipped += 1
+                continue
+
+            eval_entry = {
+                "id": f"github-issue-{issue['number']}",
+                "prompt": parsed.get("prompt", ""),
+                "expected_output": parsed.get("expected_output", ""),
+                "files": parsed.get("files", []),
+                "assertions": parsed.get("assertions", []),
+            }
+
+            status = save_to_evals(eval_entry, parsed.get("skill_name", ""))
+            print(f"Issue #{issue['number']}: {status}")
+            synced += 1
+
+        except Exception as e:
+            print(f"Error processing Issue #{issue['number']}: {e}", file=sys.stderr)
+            errors += 1
+
+    print(f"\nSynced {synced}/{total} issues. Skipped: {skipped}. Errors: {errors}.")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Sync all GitHub issues labeled 'benchmark' into local evals.json files."
+    )
+    parser.add_argument(
+        "--repo",
+        default=DEFAULT_REPO,
+        help=f"GitHub repository (default: {DEFAULT_REPO})",
+    )
+    args = parser.parse_args()
+    sync_all_benchmarks(args.repo)
+
+
+if __name__ == "__main__":
+    main()

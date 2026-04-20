@@ -1,0 +1,52 @@
+name: Sync Benchmark Issues to Evals
+
+on:
+  issues:
+    types: [opened, edited, labeled]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: 'Specific issue number to import (leave blank to sync all)'
+        required: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    # Only trigger on issues with the 'benchmark' label
+    if: |
+      github.repository == 'eric-zhang16/Biostatistics-skills' &&
+      (github.event_name == 'workflow_dispatch' ||
+       contains(github.event.issue.labels.*.name, 'benchmark'))
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Import single issue
+        if: github.event_name == 'issues' || github.event.inputs.issue_number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ISSUE="${{ github.event.issue.number || github.event.inputs.issue_number }}"
+          python3 _automation/issue-to-eval/scripts/import_issue_eval.py --issue "$ISSUE"
+
+      - name: Sync all benchmark issues
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.issue_number == ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 _automation/issue-to-eval/scripts/sync_benchmarks.py
+
+      - name: Commit updated evals.json
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "eval: sync benchmark from issue #${{ github.event.issue.number || github.event.inputs.issue_number }} [skip ci]"
+          file_pattern: "plugins/**/evals/evals.json"
