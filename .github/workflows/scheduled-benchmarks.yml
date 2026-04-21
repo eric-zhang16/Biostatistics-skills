@@ -1,4 +1,5 @@
 name: Scheduled Benchmarks
+
 on:
   workflow_dispatch:
     inputs:
